@@ -29,16 +29,17 @@ async function createWallet() {
          }
         wal.key = mnemonic
         console.log("Phrase mnémotechnique : ", mnemonic);
-     
+         
+        // changer l'index de la clé publique en fonction de la chaine cible.(13 = Integritee)
          const keyring = new Keyring({ type: 'sr25519', ss58Format: 13 });
      
         try {
             const wallet = keyring.addFromUri(mnemonic);
             if (wallet)
-            wal.adress = wallet.toJson();
-            tab.push(wal)
-            console.log(tab)
-            console.log("Adresse du wallet : ", wallet.toJson());
+                wal.adress = wallet.toJson();
+                tab.push(wal)
+                console.log(tab)
+                console.log("Adresse du wallet : ", wallet.toJson());
         } catch (error) {
             console.error("Erreur lors de la création du wallet : ", error);
         }
